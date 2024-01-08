@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "devdojo/genesis": "dev-main",
         "filament/filament": "^3.1",
         "filament/forms": "^3.1",
         "guzzlehttp/guzzle": "^7.2",
