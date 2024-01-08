@@ -1,7 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -16,7 +15,14 @@ module.exports = {
     },
     content: [
         './app/**/*.php',
-        "./resources/**/*.{php,html,js,jsx,ts,tsx,vue,twig}",
+        './resources/**/*.html',
+        './resources/**/*.js',
+        './resources/**/*.jsx',
+        './resources/**/*.ts',
+        './resources/**/*.tsx',
+        './resources/**/*.php',
+        './resources/**/*.vue',
+        './resources/**/*.twig',
     ],
     plugins: [
         require('@tailwindcss/forms'),

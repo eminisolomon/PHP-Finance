@@ -1,23 +1,34 @@
 <?php
 
+namespace Tests\Feature\Auth;
+
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Tests\TestCase;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+class LogoutTest extends TestCase
+{
+    use RefreshDatabase;
 
-test('an authenticated user can log out', function () {
-    $user = User::factory()->create();
-    $this->be($user);
+    /** @test */
+    public function an_authenticated_user_can_log_out()
+    {
+        $user = User::factory()->create();
+        $this->be($user);
 
-    $this->post(route('logout'))
-        ->assertRedirect(route('home'));
+        $this->post(route('logout'))
+            ->assertRedirect(route('home'));
 
-    expect(Auth::check())->toBeFalse();
-});
+        $this->assertFalse(Auth::check());
+    }
 
-test('an unauthenticated user can not log out', function () {
-    $this->post(route('logout'))
-        ->assertRedirect(route('login'));
+    /** @test */
+    public function an_unauthenticated_user_can_not_log_out()
+    {
+        $this->post(route('logout'))
+            ->assertRedirect(route('login'));
 
-    expect(Auth::check())->toBeFalse();
-});
+        $this->assertFalse(Auth::check());
+    }
+}
